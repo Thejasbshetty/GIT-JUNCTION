@@ -1,0 +1,68 @@
+/* src/HomePage.css */
+body {
+  margin: 0;
+  background-image: url('./background.jpeg'); /* Default background image */
+  background-size: cover;
+  background-position: center;
+  color: white;
+  transition: background-image 0.5s ease-in-out; /* Smooth transition for background image change */
+}
+
+.HomePage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align content to the left */
+  transition: background-image 0.5s ease-in-out; /* Smooth transition for background image change */
+}
+
+.HomePage-header {
+  padding: 20px;
+}
+
+.git-linux-junction {
+  font-size: 5rem;
+  font-weight: bold;
+  color: white;
+  animation: fadeIn 2s ease-in;
+  white-space: pre-line; /* Preserve newlines */
+}
+
+.animated-text {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 5px; /* Reduced margin */
+  white-space: pre-line; /* Preserve newlines */
+  overflow: hidden; /* Hide overflow text */
+  animation: fadeIn 2s ease-in, typing 3s steps(1), blink 15s step-end infinite;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 25px;
+  animation: bounce 1s infinite; /* Bounce animation */
+}
+
+.button {
+  padding: 30px 45px; /* Adjusted size */
+  font-size: 1.2rem; /* Adjusted font size */
+  text-decoration: none; /* Remove underline */
+  color: #ffffff;
+  background-color: #AC3931;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  cursor: pointer;
+  margin: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-right: 30px;
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smoother transitions */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+}
+
+.button:hover {
+  color: #00120B;
+  background-color: #397367;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
