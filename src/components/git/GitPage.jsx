@@ -1,8 +1,12 @@
-import React from "react";
-import "./GitPage.css";
+import React, { useState } from "react";
 import gitBackgroundImage from "./git-background.jpg";
+import "./GitPage.css"; // Import the new CSS file
+// import "./Copy";
+// import "./copyss";
 
 const GitPage = () => {
+  const [selectedSection, setSelectedSection] = useState("Getting Started");
+
   const containerStyle = {
     backgroundImage: `url(${gitBackgroundImage})`,
     backgroundSize: "cover",
@@ -10,18 +14,27 @@ const GitPage = () => {
     backgroundRepeat: "no-repeat",
     minHeight: "100vh",
     display: "flex",
-    flexDirection: "row", // Updated to row
+    flexDirection: "row",
     alignItems: "center",
+    position: "relative", // Added position relative
+    borderRight: "4px solid #000", // Vertical line
   };
 
+
   const sidebarStyle = {
-    width: "350px", // Adjusted width
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "300px",
     padding: "20px",
     marginRight: "20px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     borderRight: "1px solid #555",
+    opacity: 1,
+    transform: "translateY(0)",
+    animation: "fadeInFromTop 1s ease-out",
   };
 
   const navItemStyle = {
@@ -48,13 +61,14 @@ const GitPage = () => {
     color: "#fff",
     marginBottom: "20px",
     animation: "fadeInFromTop 3s",
+    marginRight: "350px",
   };
 
   const fadeInAnimation = `
     @keyframes fadeInFromTop {
       from {
         opacity: 0;
-        transform: translateY(-100px); /* Change the translateY value to adjust the initial position */
+        transform: translateY(-100px);
       }
       to {
         opacity: 1;
@@ -62,186 +76,275 @@ const GitPage = () => {
       }
     }
 
-    /* Apply the animation to all elements within the container */
     .container {
-      animation: fadeInFromTop 1s ease-out; /* Adjust the duration and easing as needed */
+      animation: fadeInFromTop 1s ease-out;
     }
 
-    /* Apply the animation to specific elements within the container */
     .container h2,
     .container p,
     .container button {
-      animation: fadeInFromTop 1s ease-out; /* Adjust the duration and easing as needed */
+      animation: fadeInFromTop 1s ease-out;
     }
   `;
+
+  
+
+  const handleSectionClick = (section) => {
+    setSelectedSection(section);
+  };
 
   return (
     <div style={containerStyle} className="container">
       <style>{fadeInAnimation}</style>
-      <div style={sidebarStyle}>
+      <div
+        style={{
+          ...sidebarStyle,
+          fadeInAnimation,
+          ...{ animation: "fadeInFromTop 1s ease-out" },
+        }}
+      >
         <h2 style={{ marginBottom: "20px", fontSize: "35px" }}>Git Guide</h2>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li style={navItemStyle}>
-            <button style={buttonStyle}>Getting Started</button>
+            <button
+              style={buttonStyle}
+              onClick={() => handleSectionClick("Getting Started")}
+            >
+              Getting Started
+            </button>
           </li>
           <li style={navItemStyle}>
-            <button style={buttonStyle}>Git Basics</button>
+            <button
+              style={buttonStyle}
+              onClick={() => handleSectionClick("Git Commands")}
+            >
+              Git Commands
+            </button>
           </li>
           <li style={navItemStyle}>
-            <button style={buttonStyle}>Git Branching</button>
+            <button
+              style={buttonStyle}
+              onClick={() => handleSectionClick("Git Branching Strategies")}
+            >
+              Git Branching Strategies
+            </button>
           </li>
           <li style={navItemStyle}>
-            <button style={buttonStyle}>Git on the Server</button>
+            <button
+              style={buttonStyle}
+              onClick={() => handleSectionClick("Collaborating on GitHub")}
+            >
+              Collaborating on GitHub
+            </button>
           </li>
           <li style={navItemStyle}>
-            <button style={buttonStyle}>Distributed Git</button>
+            <button
+              style={buttonStyle}
+              onClick={() => handleSectionClick("Git Best Practices")}
+            >
+              Git Best Practices
+            </button>
           </li>
           <li style={navItemStyle}>
-            <button style={buttonStyle}>GitHub</button>
+            <button
+              style={buttonStyle}
+              onClick={() => handleSectionClick("Advanced Git Techniques")}
+            >
+              Advanced Git Techniques
+            </button>
           </li>
+          <li style={navItemStyle}>
+            <button
+              style={buttonStyle}
+              onClick={() => handleSectionClick("Git Hooks")}
+            >
+              Git Hooks
+            </button>
+          </li>
+
+          {/* Add similar buttons for other sections */}
         </ul>
       </div>
 
-      <div
-        style={{
-          flex: 1,
-          padding: "20px",
-          borderRadius: "15px",
-          display: "flex",
-          flexDirection: "column",
-          fontSize: "25px",
-        }}
-      >
-        <h2 style={animatedTextStyle}>Getting Started with GitHub</h2>
+      <div className="content-container">
+        <h2 style={animatedTextStyle}>{selectedSection}</h2>
+        {/* Render content based on the selected section */}
+        {selectedSection === "Getting Started" && (
+          <section>
+            <h2>What is Version Control?</h2>
+            <p>
+              Version control is a system that records changes to a file or set
+            </p>
+            <h2>What is Git, and why should I use it?</h2>
+            <p>
+              Git is a distributed version control system that helps you track
+              changes in your code. It allows multiple people to collaborate on
+              projects efficiently. You should use it to keep a history of
+              changes, work on different features simultaneously, and easily
+              merge and manage code from different contributors.
+            </p>
+            <h2>How do I start using Git on my project?</h2>
+            <p>
+              First, initialize a Git repository in your project folder using
+              git init. This sets up Git for your project. Then, use git add to
+              stage changes and git commit to save those changes. Voila! You've
+              started using Git.
+            </p>
+            <h2> What is the difference between Git commit and Git push?</h2>
+            <p>
+              git commit records changes to the repository, but it's local to
+              your machine. git push is used to upload local repository content
+              to a remote repository. In simple terms, commit is like saving
+              changes on your computer, and push is like sharing those saved
+              changes with others on a shared platform.
+            </p>
+
+            <h2>How can I collaborate with others using Git?</h2>
+            <p>
+              Collaborating involves sharing your changes and incorporating
+              others'. Use git pull to fetch changes from a remote repository,
+              and git push to upload your changes. When collaborating, git
+              branch is handy for creating separate lines of development
+              (branches), and git merge combines those branches.
+            </p>
+
+            <h2>
+              What is a Git repository, and what's the difference between a
+              local and remote repository?
+            </h2>
+            <p>
+              {" "}
+              A Git repository is like a project's folder that Git is tracking.
+              A local repository is on your machine, and a remote repository is
+              hosted on a server, like GitHub or GitLab. You work in your local
+              repository, and when you're ready, you can push your changes to
+              the remote repository to share them.
+            </p>
+          </section>
+        )}
         <section>
-          <h2>What is Version Control?</h2>
-          <p>
-            Version control is a system that records changes to a file or set of
-            files over time so that you can recall specific versions later. It
-            allows you to track modifications, revert to previous stages, and
-            work collaboratively with others.
-          </p>
+          <h2>1) Initialization : </h2>
+          <pre class="hljs">
+            <code>git init</code>
+            <button class="hljs-copy-button" type="button">
+              Copy
+            </button>
+          </pre>
+          <p>Initializes a new Git repository.</p>
+          <h2>2) Configuration :</h2>
+          <pre class="hljs">
+            <code>git config --global user.name "Your Name"</code>
+          </pre>
+          <p>Sets your username.</p>
+          <pre class="hljs">
+            <code>git config --global user.email "your.email@example.com"</code>
+          </pre>
+          <p>Sets your email.</p>
+
+          <h2>3) Adding and Committing :</h2>
+          <pre class="hljs">
+            <code>git add filename</code>
+          </pre>
+          <p>Stages changes for commit.</p>
+
+          <pre class="hljs">
+            <code>git add .</code>
+          </pre>
+          <p>Stages all changes for commit.</p>
+
+          <pre class="hljs">
+            <code>git commit -m "Your commit message"</code>
+          </pre>
+          <p>Commits staged changes.</p>
+
+          <h2>4) Status and Differences:</h2>
+
+          <pre class="hljs">
+            <code>git status</code>
+          </pre>
+          <p>Shows the status of changes.</p>
+
+          <pre class="hljs">
+            <code>git diff</code>
+          </pre>
+          <p>Shows changes between working directory and last commit.</p>
+
+          <h2>5) Branching</h2>
+          <pre class="hljs">
+            <code>git branch branchname</code>
+          </pre>
+          <p> Creates a new branch.</p>
+
+          <pre class="hljs">
+            <code>git checkout branchname</code>
+          </pre>
+          <p>Switches to an existing branch.</p>
+
+          <pre class="hljs">
+            <code>git checkout -b newbranch</code>
+          </pre>
+          <p>Creates and switches to a new branch</p>
+
+          <h2>6) Merging</h2>
+          <pre class="hljs">
+            <code>git merge branchname</code>
+          </pre>
+          <p>Merges changes from the specified branch.</p>
+
+          <h2>7) Remote Repositories</h2>
+          <pre class="hljs">
+            <code>git remote add origin remote_repository_url</code>
+          </pre>
+          <p>Links your local repository to a remote one.</p>
+
+          <pre class="hljs">
+            <code>git remote -v</code>
+          </pre>
+          <p>Shows the remote repositories linked to your local repository.</p>
+
+          <h2>8) Pushing and Pulling:</h2>
+          <pre class="hljs">
+            <code>git push origin branchname</code>
+          </pre>
+          <p>Pushes changes to a remote repository.</p>
+
+          <pre class="hljs">
+            <code>git pull origin branchname</code>
+          </pre>
+          <p>Pulls changes from a remote repository.</p>
+
+          <h2>9) Logs and History</h2>
+          <pre class="hljs">
+            <code>git log</code>
+          </pre>
+          <p>Shows commit history.</p>
+
+          <pre class="hljs">
+            <code>git log --oneline</code>
+          </pre>
+          <p>Shows abbreviated commit history.</p>
+
+          <h2>10) Undoing Changes</h2>
+          <pre class="hljs">
+            <code>git reset filename</code>
+          </pre>
+          <p>Unstages changes.</p>
+
+          <pre class="hljs">
+            <code>git reset --hard commit_hash</code>
+          </pre>
+          <p>Discards changes and resets to a specific commit.</p>
+
+          <pre class="hljs">
+            <code>git revert commit_hash</code>
+          </pre>
+          <p>Reverts changes introduced by a specific commit.</p>
         </section>
 
-        <section>
-          <h2>What is Git?</h2>
-          <p>
-            Git is a distributed version control system that enables multiple
-            developers to work on a project simultaneously. It tracks changes,
-            maintains a history of edits, and facilitates collaboration without
-            conflicts.
-          </p>
-        </section>
-
-        <section>
-          <h2>Git Basics</h2>
-          <p>
-            Git has a few basic commands that help you manage your
-            version-controlled projects. Learn about commands like commit, push,
-            pull, branch, and merge.
-          </p>
-        </section>
-
-        <section>
+        {/* <section>
           <h2>Git Branching Strategies</h2>
-          <p>
-            Understanding branching strategies is crucial for efficient
-            collaboration. Explore different branching models, such as feature
-            branching and Gitflow.
-          </p>
-        </section>
-
-        <section>
-          <h2>Collaborating on GitHub</h2>
-          <p>
-            GitHub is a popular platform for hosting Git repositories. Learn how
-            to collaborate with others, contribute to open source projects, and
-            use pull requests for code review.
-          </p>
-        </section>
-
-        <section>
-          <h2>Git Best Practices</h2>
-          <p>
-            Discover best practices for using Git, including commit message
-            conventions, keeping commits atomic, and managing large repositories
-            effectively.
-          </p>
-        </section>
-
-        <section>
-          <h2>Advanced Git Techniques</h2>
-          <p>
-            Dive deeper into Git with advanced topics like rebasing,
-            cherry-picking, and interactive rebase. These techniques can help
-            you maintain a clean and organized commit history.
-          </p>
-        </section>
-
-        <section>
-          <h2>Git Hooks</h2>
-          <p>
-            Git hooks allow you to automate actions at various points in the Git
-            workflow. Explore pre-commit hooks, post-commit hooks, and more to
-            enhance your development process.
-          </p>
-        </section>
-        <section>
-          <h2>Advanced Git Techniques</h2>
-          <p>
-            Git offers powerful features beyond the basics. Explore these
-            advanced techniques to enhance your version control workflow.
-          </p>
-
-          <h3>Rebasing</h3>
-          <p>
-            Git rebase allows you to move or combine a sequence of commits to a
-            new base commit. This can result in a cleaner and more linear commit
-            history compared to merging.
-          </p>
-
-          <h3>Cherry-Picking</h3>
-          <p>
-            Cherry-picking enables you to select specific commits and apply them
-            to a different branch. It's a useful tool for incorporating only the
-            changes you need.
-          </p>
-
-          <h3>Interactive Rebase</h3>
-          <p>
-            Interactive rebase provides a flexible way to modify and organize
-            your commit history. You can squash, edit, delete, or reorder
-            commits interactively.
-          </p>
-
-          <h3>Submodules</h3>
-          <p>
-            Git submodules allow you to include other Git repositories within
-            your own. This is helpful when you want to maintain a separate,
-            version-controlled project within a larger one.
-          </p>
-
-          <h3>Git Workflows</h3>
-          <p>
-            Explore different Git workflows, such as GitHub flow or Gitflow, and
-            choose the one that best fits your project's requirements and
-            collaboration style.
-          </p>
-
-          <h3>Git Bisect</h3>
-          <p>
-            Git bisect helps you find the commit that introduced a bug by
-            performing a binary search through your commit history. It's a
-            valuable tool for identifying when an issue was introduced.
-          </p>
-
-          <h3>Git Stash</h3>
-          <p>
-            Git stash allows you to save changes that are not ready to be
-            committed yet. This is useful when you need to switch branches or
-            address an urgent issue without committing incomplete work.
-          </p>
-        </section>
+          <p>Understanding branching strategies is crucial for efficient</p>
+        </section> */}
       </div>
     </div>
   );
