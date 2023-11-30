@@ -8,7 +8,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const text =
-      "Welcome to Git-Linux-Junction, your hub for mastering\n Git and Linux. Dive into tutorials and resources to explore \nversion control and open-source computing together!";
+      "Welcome to Git-Master Hub!\n Master Git with our tutorials and resources for top-notch version control.\n Elevate your open-source skills!";
     const textContainer = document.querySelector(".animated-text");
     const textArray = text.split("");
     if (textIndex < textArray.length) {
@@ -42,9 +42,6 @@ const HomePage = () => {
         <div className="buttons-container">
           <Link to="/git" className="button git">
             Explore Git
-          </Link>
-          <Link to="/linux" className="button linux">
-            Discover Linux
           </Link>
         </div>
       </header>

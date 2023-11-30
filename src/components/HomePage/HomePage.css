@@ -4,7 +4,7 @@ body {
   background-image: url('./background.jpeg'); /* Default background image */
   background-size: cover;
   background-position: center;
-  color: white;
+  color: #397367;
   transition: background-image 0.5s ease-in-out; /* Smooth transition for background image change */
 }
 
@@ -63,6 +63,6 @@ body {
 
 .button:hover {
   color: #00120B;
-  background-color: #397367;
+  background-color: white;
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
 }

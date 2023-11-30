@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import gitBackgroundImage from "./git-background.jpg";
-import "./GitPage.css"; // Import the new CSS file
-// import "./Copy";
-// import "./copyss";
+import "./GitPagetest.css";
+
 
 const GitPage = () => {
   const [selectedSection, setSelectedSection] = useState("Getting Started");
@@ -12,12 +11,13 @@ const GitPage = () => {
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    minHeight: "100vh",
+    minHeight: "300vh",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    position: "relative", // Added position relative
-    borderRight: "4px solid #000", // Vertical line
+    position: "relative",
+    borderRight: "4px solid #000",
+    backgroundAttachment: "fixed",
   };
 
 
@@ -35,6 +35,9 @@ const GitPage = () => {
     opacity: 1,
     transform: "translateY(0)",
     animation: "fadeInFromTop 1s ease-out",
+    color: "white",
+    fontSize: "200px",
+    height: "100%"
   };
 
   const navItemStyle = {
@@ -103,7 +106,7 @@ const GitPage = () => {
           ...{ animation: "fadeInFromTop 1s ease-out" },
         }}
       >
-        <h2 style={{ marginBottom: "20px", fontSize: "35px" }}>Git Guide</h2>
+        <h2 style={{ marginBottom: "20px", fontSize: "60px" }}>Git Guide</h2>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li style={navItemStyle}>
             <button
@@ -121,59 +124,19 @@ const GitPage = () => {
               Git Commands
             </button>
           </li>
-          <li style={navItemStyle}>
-            <button
-              style={buttonStyle}
-              onClick={() => handleSectionClick("Git Branching Strategies")}
-            >
-              Git Branching Strategies
-            </button>
-          </li>
-          <li style={navItemStyle}>
-            <button
-              style={buttonStyle}
-              onClick={() => handleSectionClick("Collaborating on GitHub")}
-            >
-              Collaborating on GitHub
-            </button>
-          </li>
-          <li style={navItemStyle}>
-            <button
-              style={buttonStyle}
-              onClick={() => handleSectionClick("Git Best Practices")}
-            >
-              Git Best Practices
-            </button>
-          </li>
-          <li style={navItemStyle}>
-            <button
-              style={buttonStyle}
-              onClick={() => handleSectionClick("Advanced Git Techniques")}
-            >
-              Advanced Git Techniques
-            </button>
-          </li>
-          <li style={navItemStyle}>
-            <button
-              style={buttonStyle}
-              onClick={() => handleSectionClick("Git Hooks")}
-            >
-              Git Hooks
-            </button>
-          </li>
-
-          {/* Add similar buttons for other sections */}
         </ul>
       </div>
 
       <div className="content-container">
         <h2 style={animatedTextStyle}>{selectedSection}</h2>
-        {/* Render content based on the selected section */}
         {selectedSection === "Getting Started" && (
           <section>
             <h2>What is Version Control?</h2>
             <p>
-              Version control is a system that records changes to a file or set
+              Version control is a system that helps track changes to files over
+              time. It allows multiple contributors to collaborate on a project,
+              keeps a historical record of changes, and enables the management
+              of different versions of files.
             </p>
             <h2>What is Git, and why should I use it?</h2>
             <p>
@@ -653,11 +616,6 @@ const GitPage = () => {
           </pre>
           <p>Creates a zip archive of the repository.</p>
         </section>
-
-        {/* <section>
-          <h2>Git Branching Strategies</h2>
-          <p>Understanding branching strategies is crucial for efficient</p>
-        </section> */}
       </div>
     </div>
   );
